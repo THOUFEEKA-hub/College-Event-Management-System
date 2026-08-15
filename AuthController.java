@@ -16,7 +16,6 @@ public class AuthController {
     @Autowired
     private UserRepository userRepository;
 
-    // Login API (Works for both Admin & Student)
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody User loginData) {
         Optional<User> userOpt = userRepository.findByEmail(loginData.getEmail());
@@ -24,7 +23,7 @@ public class AuthController {
         if (userOpt.isPresent()) {
             User user = userOpt.get();
             if (user.getPassword().equals(loginData.getPassword())) {
-                return ResponseEntity.ok(user); // Returns User object with Role (ADMIN/STUDENT)
+                return ResponseEntity.ok(user);
             }
         }
         return ResponseEntity.badRequest().body("Invalid Email or Password!");
