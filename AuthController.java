@@ -29,8 +29,6 @@ public class AuthController {
         }
         return ResponseEntity.badRequest().body("Invalid Email or Password!");
     }
-
-    // Register User (Admins / Students)
     @PostMapping("/register")
     public ResponseEntity<?> registerUser(@RequestBody User user) {
         if (userRepository.findByEmail(user.getEmail()).isPresent()) {
