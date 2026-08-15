@@ -16,7 +16,6 @@ public class DataInitializer implements CommandLineRunner {
 
     @Override
     public void run(String... args) {
-        // Create Default Admins if not existing
         if (userRepository.findByEmail("admin1@college.edu").isEmpty()) {
             userRepository.save(new User("Staff Admin 1", "admin1@college.edu", "admin123", "ADMIN"));
         }
